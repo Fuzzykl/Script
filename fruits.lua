@@ -26,43 +26,35 @@ end
 function SendInfo()
     for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 	    if string.find(v.Name, "Fruit") then
-	        CheckFruit(tostring(v.Name))
-            local args = {
-                [1] = "StoreFruit",
-                [2] = GetFruit,
-                [3] = game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(tostring(v.Name))
-            }
-            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-		        local data = {
-                    ["username"] = 'Huy Hub',
-                    ["embeds"] = {
-                        {
-                             ["type"] = "rich",
-                             ["fields"] =  {
-                                 {
-                                     ["name"] = "[🤖] User Picked Up",
-                                     ["value"] = "```"..game.Players.LocalPlayer.Name.."```",
-                                     ["inline"] = true
-                                 },
-                                 {
-                                     ["name"] = "[🥦] Blox Fruit Picked Up",
-                                     ["value"] = "```"..v.Name.."```",
-                                     ["inline"] = true
-                                 }
-                             },
-                             ["footer"] = {
-                                ["text"] = "Webhook By Huy"
-                             },
-                             ["timestamp"] = DateTime.now():ToIsoDate()
-                        }
+            local data = {
+                ["username"] = 'Huy Hub',
+                ["embeds"] = {
+                    {
+                        ["type"] = "rich",
+                        ["fields"] =  {
+                            {
+                                ["name"] = "[🤖] User Picked Up",
+                                ["value"] = "```"..game.Players.LocalPlayer.Name.."```",
+                                ["inline"] = true
+                            },
+                            {
+                                ["name"] = "[🥦] Blox Fruit Picked Up",
+                                ["value"] = "```"..v.Name.."```",
+                                ["inline"] = true
+                            }
+                        },
+                        ["footer"] = {
+                            ["text"] = "Webhook By Huy"
+                        },
+                        ["timestamp"] = DateTime.now():ToIsoDate()
                     }
                 }
-                local newdata = game:GetService("HttpService"):JSONEncode(data)
-                local headers = {["content-type"] = "application/json"}
-                request = http_request or request or HttpPost or syn.request
-                local send = {Url = WebHook, Body = newdata, Method = "POST", Headers = headers}
-                request(send)
-            end
+            }
+            local newdata = game:GetService("HttpService"):JSONEncode(data)
+            local headers = {["content-type"] = "application/json"}
+            request = http_request or request or HttpPost or syn.request
+            local send = {Url = WebHook, Body = newdata, Method = "POST", Headers = headers}
+            request(send)
         end
     end
     for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
