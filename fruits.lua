@@ -237,7 +237,7 @@ function CheckFruit(FruitName)
 end
 spawn(function()
     pcall(function()
-        while wait() do
+        while wait(.3) do
             for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 			    if string.find(v.Name, "Fruit") then
 			        CheckFruit(tostring(v.Name))
