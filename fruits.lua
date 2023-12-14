@@ -23,7 +23,23 @@ function TP(Pos)
         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = Pos
     end
 end
+
+function CheckTypeFruit(Fruit)
+    if Fruit == "Rocket Fruit" or Fruit == "Spin Fruit" or Fruit == "Chop Fruit" or Fruit == "Spring Fruit" or Fruit == "Bomb Fruit" or Fruit == "Smoke Fruit" or Fruit == "Spike Fruit" then
+        return "Common"
+    elseif Fruit == "Flame Fruit" or Fruit == "Falcon Fruit" or Fruit == "Ice Fruit" or Fruit == "Sand Fruit" or Fruit == "Dark Fruit" or Fruit == "Diamond Fruit" then
+        return "UnCommon"
+    elseif Fruit == "Light Fruit" or Fruit == "Rubber Fruit" or Fruit == "Barrier Fruit" or Fruit == "Ghost Fruit" or Fruit == "Magma Fruit" then
+        return "Rate"
+    elseif Fruit == "Quake Fruit" or Fruit == "Buddha Fruit" or Fruit == "Love Fruit" or Fruit == "Spider Fruit" or Fruit == "Sound Fruit" or Fruit == "Phoenix Fruit" or Fruit == "Portal Fruit" or Fruit == "Rumble Fruit" or Fruit == "Pain Fruit" or Fruit == "Blizzard Fruit" then
+        return "Lengendary"
+    elseif Fruit == "Gravity Fruit" or Fruit == "Mammoth Fruit" or Fruit == "Dough Fruit" or Fruit == "Shadow Fruit" or Fruit == "Venom Fruit" or Fruit == "Control Fruit" or Fruit == "Spirit Fruit" or Fruit == "Dragon Fruit" or Fruit == "Leopard Fruit" then
+        return "Mythical"
+    end
+end
+
 function SendInfo()
+    pcall(function()
     for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
 	    if string.find(v.Name, "Fruit") then
             local data = {
@@ -40,6 +56,11 @@ function SendInfo()
                             {
                                 ["name"] = "[🥦] Blox Fruit Picked Up",
                                 ["value"] = "```"..v.Name.."```",
+                                ["inline"] = true
+                            },
+                            {
+                                ["name"] = "[❕️] Fruit Type",
+                                ["value"] = "```"..CheckTypeFruit(v.Name).."```",
                                 ["inline"] = true
                             }
                         },
@@ -74,6 +95,11 @@ function SendInfo()
                                 ["name"] = "[🥦] Blox Fruit Picked Up",
                                 ["value"] = "```"..v.Name.."```",
                                 ["inline"] = true
+                            },
+                            {
+                                ["name"] = "[❕️] Fruit Type",
+                                ["value"] = "```"..CheckTypeFruit(v.Name).."```",
+                                ["inline"] = true
                             }
                         },
                         ["footer"] = {
@@ -90,6 +116,7 @@ function SendInfo()
             request(send)
         end
     end
+    end)
 end
 function Hop()
     local PlaceID = game.PlaceId
@@ -176,6 +203,7 @@ spawn(function()
         end
     end)
 end)
+
 spawn(function()
     pcall(function()
     	while wait() do
@@ -185,14 +213,20 @@ spawn(function()
 				    repeat
 				        wait()
 					    TP(v.Handle.CFrame)
-				    until game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position == v.Handle.Position or not v:FindFirstChild("Handle")
-				    if WebHook then SendInfo() end
+				    until game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position == v.Handle.Position or not v:FindFirstChild("Handle") or game:GetService("Players").LocalPlayer.Character.Humanoid.Health <= 0 or wait(300)
 			    end
 		    end
-            game.StarterGui:SetCore("SendNotification", {Title = "Notification", Text = "No Fruit Found" ,Duration = 2.5})
+		    if WebHook then SendInfo() end
+		    game.StarterGui:SetCore("SendNotification", {Title = "Notification", Text = "No Fruit Found" ,Duration = 2.5})
             game.StarterGui:SetCore("SendNotification", {Title = "Notification", Text = "Server Will Change After 3 Seconds" ,Duration = 2.5})
             wait(3)
-			Hop()
+		    Hop()
+		    wait(3)
+		    Hop()
+		    wait(3)
+		    Hop()
+		    wait(3)
+		    Hop()
         end
     end)
 end)
