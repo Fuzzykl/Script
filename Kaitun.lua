@@ -637,7 +637,7 @@ end
 	    	local ac = CombatFrameworkR.activeController
 	    	if ac and ac.equipped then
 		        AttackNoCD()
-	    	    if tick() - cooldownfastattack > 3.5 then task.wait() cooldownfastattack = tick() end
+	    	    if tick() - cooldownfastattack > 1 then task.wait() cooldownfastattack = tick() end
 	    	end
     	end
     end)()
