@@ -87,16 +87,11 @@ function CheckQuestLevel()
 			LevelQuest = 2
 			NameMon = "Dangerous Prisoner"
 			CFrameMon = CFrame.new(5433.39307, 88.678093, 514.986877, 0.879988372, 0, -0.474995494, 0, 1, 0, 0.474995494, 0, 0.879988372)
-		elseif Level == 250 or Level <= 274 then
+		elseif Level == 250 or Level <= 299 then
 			NameQuest = "ColosseumQuest"
 			LevelQuest = 1
 			NameMon = "Toga Warrior"
 			CFrameMon = CFrame.new(-1779.97583, 44.6077499, -2736.35474, 0.984437346, 4.10396339e-08, 0.175734788, -3.62286876e-08, 1, -3.05844168e-08, -0.175734788, 2.3741821e-08, 0.984437346)
-		elseif Level == 275 or Level <= 299 then
-			NameQuest = "ColosseumQuest"
-			LevelQuest = 2
-			NameMon = "Gladiato"
-			CFrameMon = CFrame.new(-1274.75903, 58.1895943, -3188.16309, 0.464524001, 6.21005611e-08, 0.885560572, -4.80449414e-09, 1, -6.76054768e-08, -0.885560572, 2.71497012e-08, 0.464524001)
 		elseif Level == 300 or Level <= 324 then
 			NameQuest = "MagmaQuest"
 			LevelQuest = 1
@@ -637,7 +632,7 @@ end
 	    	local ac = CombatFrameworkR.activeController
 	    	if ac and ac.equipped then
 		        AttackNoCD()
-	    	    if tick() - cooldownfastattack > 1 then task.wait() cooldownfastattack = tick() end
+	    	    if tick() - cooldownfastattack > 2.5 then wait(1) cooldownfastattack = tick() end
 	    	end
     	end
     end)()
@@ -1056,6 +1051,8 @@ spawn(function()
                     end
                     wait(10200)
                    _G.Saber = false
+                else
+                    _G.Saber = false
                 end
             end
         end
