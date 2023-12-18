@@ -56,7 +56,7 @@ end
 				elseif Lv == 75 or Lv <= 89 then 
 					NameQuest = "DesertQuest"
 					LevelQuest = 2
-					NameMon = "Desert Officer"
+					NameMon = "Desert Officers"
 					CFrameQuest = CFrame.new(1608.2822265625, 8.614224433898926, 4371.00732421875)
 					CFrameMon = CFrame.new(1547.1510009766, 14.452038764954, 4381.8002929688)
 				elseif Lv == 90 or Lv <= 99 then 
